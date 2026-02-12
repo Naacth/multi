@@ -21,8 +21,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl p-10">
                 <div class="bg-white/10 rounded-2xl p-8 backdrop-blur text-center">
-                    <div class="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <span class="text-primary-600 font-bold text-4xl">M</span>
+                    <div class="w-24 h-24 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur">
+                        <img src="/logo.png" alt="CV. Multi Teknik Jaya Logo" class="w-20 h-20">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2">CV. Multi Teknik Jaya</h3>
                     <p class="text-primary-100 text-sm">Filter • Machining • Fabrikasi</p>

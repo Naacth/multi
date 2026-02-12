@@ -6,9 +6,7 @@
             <!-- Company Info -->
             <div class="lg:col-span-2">
                 <div class="flex items-center space-x-3 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">M</span>
-                    </div>
+                    <img src="/logo.png" alt="CV. Multi Teknik Jaya Logo" class="w-12 h-12">
                     <div>
                         <p class="font-bold text-xl">CV. Multi Teknik Jaya</p>
                         <p class="text-industrial-400 text-sm">Filter • Machining • Fabrikasi</p>
