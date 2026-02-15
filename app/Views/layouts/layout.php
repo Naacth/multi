@@ -8,7 +8,7 @@
     <title><?= $title ?? 'CV. Multi Teknik Jaya' ?></title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png?v=2">
+    <link rel="icon" type="image/png" href="/favicon.png">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
