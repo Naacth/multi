@@ -26,8 +26,8 @@
 
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
         <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-8 text-center">
-            <div class="w-16 h-16 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span class="text-white font-bold text-3xl">M</span>
+            <div class="w-20 h-20 bg-white/10 backdrop-blur rounded-xl flex items-center justify-center mx-auto mb-4 p-2">
+                <img src="/logo.png" alt="Logo" class="w-full h-full object-contain">
             </div>
             <h2 class="text-2xl font-bold text-white">Admin Panel</h2>
             <p class="text-primary-100 text-sm">Masuk untuk mengelola website</p>

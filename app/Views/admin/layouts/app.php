@@ -29,7 +29,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
+                    <div class="flex-shrink-0 flex items-center space-x-3">
+                        <img src="/logo.png" alt="Logo" class="w-8 h-8 object-contain">
                         <span class="font-bold text-xl text-primary-600">Admin Panel</span>
                     </div>
                 </div>

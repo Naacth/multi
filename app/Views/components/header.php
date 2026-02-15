@@ -4,9 +4,7 @@
         <div class="flex items-center justify-between h-16 md:h-20">
             <!-- Logo -->
             <a href="/" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/25 transition-all duration-300">
-                    <span class="text-white font-bold text-lg md:text-xl">M</span>
-                </div>
+                <img src="/logo.png" alt="Logo CV. Multi Teknik Jaya" class="w-10 h-10 md:w-12 md:h-12 object-contain filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300">
                 <div class="hidden sm:block">
                     <p class="font-bold text-lg md:text-xl text-industrial-800"><?= $company['name'] ?? 'Multi Teknik Jaya' ?></p>
                     <p class="text-xs text-industrial-500 -mt-1">Filter • Machining • Fabrikasi</p>
