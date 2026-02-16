@@ -55,6 +55,11 @@
                     </p>
                 </div>
             </div>
+            <div class="mt-4 hidden" id="preview-container">
+                <p class="text-sm text-industrial-600 mb-2">Preview:</p>
+                <img id="image-preview" src="#" alt="Preview" class="max-h-64 rounded-lg shadow-md mx-auto">
+                <p id="file-name" class="text-xs text-center text-industrial-500 mt-2 font-mono"></p>
+            </div>
         </div>
 
         <div>
@@ -64,5 +69,34 @@
         </div>
     </form>
 </div>
+
+<script>
+    const imageInput = document.getElementById('image');
+    const previewContainer = document.getElementById('preview-container');
+    const imagePreview = document.getElementById('image-preview');
+    const fileName = document.getElementById('file-name');
+
+    imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        
+        if (file) {
+            // Show filename
+            fileName.textContent = file.name;
+            
+            // Show preview
+            const reader = new FileReader();
+            
+            reader.addEventListener("load", function() {
+                imagePreview.setAttribute("src", this.result);
+                previewContainer.classList.remove('hidden');
+            });
+            
+            reader.readAsDataURL(file);
+        } else {
+            previewContainer.classList.add('hidden');
+            fileName.textContent = '';
+        }
+    });
+</script>
 
 <?= $this->endSection() ?>
