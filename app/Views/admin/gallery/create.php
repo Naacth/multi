@@ -7,22 +7,32 @@
     <a href="/admin/gallery" class="text-primary-600 hover:text-primary-800 text-sm">&larr; Kembali ke galeri</a>
 </div>
 
+<?php if(session()->has('errors')): ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <ul>
+        <?php foreach(session('errors') as $error): ?>
+            <li><?= esc($error) ?></li>
+        <?php endforeach ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <div class="bg-white rounded-xl shadow-sm border border-industrial-100 p-6 max-w-2xl">
     <form action="/admin/gallery" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
         
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium text-industrial-700 mb-1">Judul Foto</label>
-            <input type="text" name="title" id="title" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" required placeholder="Contoh: Mesin Bubut CNC">
+            <input type="text" name="title" id="title" value="<?= old('title') ?>" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" required placeholder="Contoh: Mesin Bubut CNC">
         </div>
 
         <div class="mb-4">
             <label for="category" class="block text-sm font-medium text-industrial-700 mb-1">Kategori</label>
             <select name="category" id="category" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border">
-                <option value="machining">Machining</option>
-                <option value="filter">Filter</option>
-                <option value="fabrikasi">Fabrikasi</option>
-                <option value="lainnya">Lainnya</option>
+                <option value="machining" <?= old('category') == 'machining' ? 'selected' : '' ?>>Machining</option>
+                <option value="filter" <?= old('category') == 'filter' ? 'selected' : '' ?>>Filter</option>
+                <option value="fabrikasi" <?= old('category') == 'fabrikasi' ? 'selected' : '' ?>>Fabrikasi</option>
+                <option value="lainnya" <?= old('category') == 'lainnya' ? 'selected' : '' ?>>Lainnya</option>
             </select>
         </div>
 
@@ -41,7 +51,7 @@
                         <p class="pl-1">atau drag and drop</p>
                     </div>
                     <p class="text-xs text-industrial-500">
-                        PNG, JPG, GIF up to 2MB
+                        PNG, JPG, GIF up to 5MB
                     </p>
                 </div>
             </div>

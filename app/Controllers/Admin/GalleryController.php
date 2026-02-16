@@ -38,7 +38,7 @@ class GalleryController extends BaseController
     {
         $rules = [
             'title' => 'required',
-            'image' => 'uploaded[image]|max_size[image,2048]|is_image[image]',
+            'image' => 'uploaded[image]|max_size[image,5120]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png,image/gif,image/webp]',
             'category' => 'required'
         ];
 
