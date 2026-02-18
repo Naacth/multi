@@ -35,7 +35,7 @@
             <label for="logo" class="block text-sm font-medium text-industrial-700 mb-1">Logo Klien (opsional)</label>
             <?php if (!empty($client['logo'])): ?>
                 <div class="flex items-center gap-4 mb-2">
-                    <img src="<?= rtrim(config('App')->baseURL, '/') ?>/uploads/clients/<?= esc($client['logo']) ?>" alt="Logo saat ini" class="w-16 h-16 object-contain border border-industrial-200 rounded-lg bg-industrial-50">
+                    <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="Logo saat ini" class="w-16 h-16 object-contain border border-industrial-200 rounded-lg bg-industrial-50">
                     <span class="text-sm text-industrial-600">Logo saat ini. Upload file baru untuk mengganti.</span>
                 </div>
             <?php endif; ?>
