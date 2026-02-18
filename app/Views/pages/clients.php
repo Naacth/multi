@@ -24,7 +24,7 @@
             <div class="bg-white rounded-xl p-8 shadow hover:shadow-lg transition-all duration-300 border border-industrial-100 flex flex-col items-center justify-center text-center group hover:-translate-y-1">
                 <div class="w-16 h-16 bg-industrial-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors overflow-hidden flex-shrink-0">
                     <?php if (!empty($client['logo'])): ?>
-                        <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="<?= esc($client['name']) ?>" class="w-full h-full object-contain p-1" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="<?= base_url('uploads/clients/' . esc($client['logo'])) ?>" alt="<?= esc($client['name']) ?>" class="w-full h-full object-contain p-1" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                         <span class="text-2xl font-bold text-industrial-400 group-hover:text-primary-600 hidden w-full h-full items-center justify-center"><?= strtoupper(substr($client['name'], 0, 1)) ?></span>
                     <?php else: ?>
                         <span class="text-2xl font-bold text-industrial-400 group-hover:text-primary-600">
