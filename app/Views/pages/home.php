@@ -163,9 +163,15 @@
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center opacity-70">
             <!-- Client Names as Placeholders since we don't have logos yet -->
              <?php foreach($clients as $client): ?>
-            <div class="bg-white/5 backdrop-blur rounded-xl p-4 text-center border border-white/10 hover:bg-white/10 transition-colors duration-300">
-                <span class="text-white font-semibold text-sm md:text-base"><?= esc($client['name']) ?></span>
-            </div>
+                <?php if (!empty($client['logo'])): ?>
+                    <div class="bg-white/5 backdrop-blur rounded-xl p-4 text-center border border-white/10 hover:bg-white/10 transition-colors duration-300 flex items-center justify-center h-24">
+                        <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="<?= esc($client['name']) ?>" class="max-h-16 w-auto filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity">
+                    </div>
+                <?php else: ?>
+                    <div class="bg-white/5 backdrop-blur rounded-xl p-4 text-center border border-white/10 hover:bg-white/10 transition-colors duration-300 flex items-center justify-center h-24">
+                        <span class="text-white font-semibold text-sm md:text-base"><?= esc($client['name']) ?></span>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>

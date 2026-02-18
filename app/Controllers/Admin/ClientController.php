@@ -53,8 +53,12 @@ class ClientController extends BaseController
         $file = $this->request->getFile('logo');
 
         if ($file && $file->isValid() && !$file->hasMoved()) {
+            $uploadPath = FCPATH . 'uploads/clients';
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
             $logoName = $file->getRandomName();
-            $file->move(FCPATH . 'uploads/clients', $logoName);
+            $file->move($uploadPath, $logoName);
         }
 
         $data = [
@@ -117,8 +121,12 @@ class ClientController extends BaseController
                 unlink(FCPATH . 'uploads/clients/' . $client['logo']);
             }
 
+            $uploadPath = FCPATH . 'uploads/clients';
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
             $logoName = $file->getRandomName();
-            $file->move(FCPATH . 'uploads/clients', $logoName);
+            $file->move($uploadPath, $logoName);
             $data['logo'] = $logoName;
         }
 
