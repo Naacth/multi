@@ -21,18 +21,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             <?php foreach($clients as $client): ?>
-            <!-- DEBUG: logo_value=<?= $client['logo'] ?? 'NULL' ?> -->
-            <div class="bg-white rounded-xl p-8 shadow hover:shadow-lg transition-all duration-300 border border-industrial-100 flex flex-col items-center justify-center text-center group hover:-translate-y-1 h-full">
-                <div class="w-24 h-24 mb-6 flex items-center justify-center">
-                    <?php if (!empty($client['logo'])): ?>
-                        <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="<?= esc($client['name']) ?>" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300">
-                    <?php else: ?>
-                        <div class="w-20 h-20 bg-industrial-50 rounded-full flex items-center justify-center group-hover:bg-primary-100 transition-colors">
-                            <span class="text-3xl font-bold text-industrial-400 group-hover:text-primary-600">
-                                <?= strtoupper(substr($client['name'], 0, 1)) ?>
-                            </span>
-                        </div>
-                    <?php endif; ?>
+            <div class="bg-white rounded-xl p-8 shadow hover:shadow-lg transition-all duration-300 border border-industrial-100 flex flex-col items-center justify-center text-center group hover:-translate-y-1">
+                <div class="w-16 h-16 bg-industrial-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
+                    <span class="text-2xl font-bold text-industrial-400 group-hover:text-primary-600">
+                        <?= strtoupper(substr($client['name'], 0, 1)) ?>
+                    </span>
                 </div>
                 <h3 class="font-bold text-industrial-900 mb-2"><?= esc($client['name']) ?></h3>
                 <?php if(!empty($client['description'])): ?>

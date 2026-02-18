@@ -8,24 +8,12 @@
 </div>
 
 <div class="bg-white rounded-xl shadow-sm border border-industrial-100 p-6 max-w-2xl">
-    <form action="/admin/clients/<?= $client['id'] ?>" method="post" enctype="multipart/form-data">
+    <form action="/admin/clients/<?= $client['id'] ?>" method="post">
         <?= csrf_field() ?>
         
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-industrial-700 mb-1">Nama Klien</label>
             <input type="text" name="name" id="name" value="<?= esc($client['name']) ?>" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="logo" class="block text-sm font-medium text-industrial-700 mb-1">Logo Klien (Opsional)</label>
-            <?php if (!empty($client['logo'])): ?>
-                <div class="mb-2">
-                    <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="Logo Saat Ini" class="h-20 w-auto object-contain border border-industrial-200 rounded p-1 bg-industrial-50">
-                    <p class="text-xs text-industrial-500 mt-1">Logo saat ini</p>
-                </div>
-            <?php endif; ?>
-            <input type="file" name="logo" id="logo" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" accept="image/*">
-            <p class="mt-1 text-xs text-industrial-500">Biarkan kosong jika tidak ingin mengubah logo. Format: JPG, PNG, WEBP. Maksimal 2MB.</p>
         </div>
 
         <div class="mb-6">
