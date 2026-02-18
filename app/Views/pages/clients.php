@@ -21,6 +21,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             <?php foreach($clients as $client): ?>
+            <!-- DEBUG: logo_value=<?= $client['logo'] ?? 'NULL' ?> -->
             <div class="bg-white rounded-xl p-8 shadow hover:shadow-lg transition-all duration-300 border border-industrial-100 flex flex-col items-center justify-center text-center group hover:-translate-y-1 h-full">
                 <div class="w-24 h-24 mb-6 flex items-center justify-center">
                     <?php if (!empty($client['logo'])): ?>
