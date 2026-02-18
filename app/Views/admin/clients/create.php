@@ -7,6 +7,16 @@
     <a href="/admin/clients" class="text-primary-600 hover:text-primary-800 text-sm">&larr; Kembali ke daftar</a>
 </div>
 
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <?= session()->getFlashdata('error') ?>
+    </div>
+<?php endif; ?>
+<?php if (session()->getFlashdata('errors')): ?>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <ul class="list-disc list-inside"><?php foreach (session()->getFlashdata('errors') as $e): ?><li><?= esc($e) ?></li><?php endforeach; ?></ul>
+    </div>
+<?php endif; ?>
 <div class="bg-white rounded-xl shadow-sm border border-industrial-100 p-6 max-w-2xl">
     <form action="/admin/clients" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>

@@ -53,9 +53,16 @@ class ClientController extends BaseController
 
         $file = $this->request->getFile('logo');
         if ($file && $file->isValid() && !$file->hasMoved()) {
+            $uploadDir = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'clients';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
             $newName = $file->getRandomName();
-            $file->move(FCPATH . 'uploads/clients', $newName);
-            $data['logo'] = $newName;
+            if ($file->move($uploadDir, $newName)) {
+                $data['logo'] = $newName;
+            } else {
+                return redirect()->back()->withInput()->with('error', 'Gagal menyimpan file logo: ' . ($file->getError() ?: 'cek folder writable/uploads/clients'));
+            }
         }
 
         $this->clientModel->insert($data);
@@ -103,12 +110,19 @@ class ClientController extends BaseController
 
         $file = $this->request->getFile('logo');
         if ($file && $file->isValid() && !$file->hasMoved()) {
+            $uploadDir = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'clients';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
             $newName = $file->getRandomName();
-            $file->move(FCPATH . 'uploads/clients', $newName);
-            $data['logo'] = $newName;
-            // Hapus logo lama jika ada
-            if (!empty($client['logo']) && file_exists(FCPATH . 'uploads/clients/' . $client['logo'])) {
-                unlink(FCPATH . 'uploads/clients/' . $client['logo']);
+            if ($file->move($uploadDir, $newName)) {
+                $data['logo'] = $newName;
+                $oldPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'clients' . DIRECTORY_SEPARATOR . ($client['logo'] ?? '');
+                if (!empty($client['logo']) && is_file($oldPath)) {
+                    @unlink($oldPath);
+                }
+            } else {
+                return redirect()->back()->withInput()->with('error', 'Gagal menyimpan file logo: ' . ($file->getError() ?: 'cek folder writable/uploads/clients'));
             }
         }
 
@@ -120,8 +134,11 @@ class ClientController extends BaseController
     public function delete($id)
     {
         $client = $this->clientModel->find($id);
-        if ($client && !empty($client['logo']) && file_exists(FCPATH . 'uploads/clients/' . $client['logo'])) {
-            unlink(FCPATH . 'uploads/clients/' . $client['logo']);
+        $logoPath = $client && !empty($client['logo'])
+            ? FCPATH . 'uploads' . DIRECTORY_SEPARATOR . 'clients' . DIRECTORY_SEPARATOR . $client['logo']
+            : '';
+        if ($logoPath !== '' && is_file($logoPath)) {
+            @unlink($logoPath);
         }
         $this->clientModel->delete($id);
         return redirect()->to('/admin/clients')->with('success', 'Klien berhasil dihapus.');
