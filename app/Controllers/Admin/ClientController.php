@@ -36,9 +36,9 @@ class ClientController extends BaseController
 
     public function create()
     {
-        // Validation handled by model or manually here
         $rules = [
-            'name' => 'required|min_length[3]'
+            'name' => 'required|min_length[3]',
+            'logo' => 'permit_empty|max_size[logo,2048]|is_image[logo]|mime_in[logo,image/jpg,image/jpeg,image/png,image/gif,image/webp]'
         ];
 
         if (!$this->validate($rules)) {
@@ -48,11 +48,16 @@ class ClientController extends BaseController
         $data = [
             'name'        => $this->request->getPost('name'),
             'description' => $this->request->getPost('description'),
+            'logo'        => null,
         ];
 
-        // Handle File Upload (Logo) could be added here if needed
-        // For now, we are just managing text data per user request history (placeholders used)
-        
+        $file = $this->request->getFile('logo');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move(FCPATH . 'uploads/clients', $newName);
+            $data['logo'] = $newName;
+        }
+
         $this->clientModel->insert($data);
 
         return redirect()->to('/admin/clients')->with('success', 'Klien berhasil ditambahkan.');
@@ -83,7 +88,8 @@ class ClientController extends BaseController
         }
 
         $rules = [
-            'name' => 'required|min_length[3]'
+            'name' => 'required|min_length[3]',
+            'logo' => 'permit_empty|max_size[logo,2048]|is_image[logo]|mime_in[logo,image/jpg,image/jpeg,image/png,image/gif,image/webp]'
         ];
 
         if (!$this->validate($rules)) {
@@ -95,6 +101,17 @@ class ClientController extends BaseController
             'description' => $this->request->getPost('description'),
         ];
 
+        $file = $this->request->getFile('logo');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move(FCPATH . 'uploads/clients', $newName);
+            $data['logo'] = $newName;
+            // Hapus logo lama jika ada
+            if (!empty($client['logo']) && file_exists(FCPATH . 'uploads/clients/' . $client['logo'])) {
+                unlink(FCPATH . 'uploads/clients/' . $client['logo']);
+            }
+        }
+
         $this->clientModel->update($id, $data);
 
         return redirect()->to('/admin/clients')->with('success', 'Data klien berhasil diperbarui.');
@@ -102,6 +119,10 @@ class ClientController extends BaseController
 
     public function delete($id)
     {
+        $client = $this->clientModel->find($id);
+        if ($client && !empty($client['logo']) && file_exists(FCPATH . 'uploads/clients/' . $client['logo'])) {
+            unlink(FCPATH . 'uploads/clients/' . $client['logo']);
+        }
         $this->clientModel->delete($id);
         return redirect()->to('/admin/clients')->with('success', 'Klien berhasil dihapus.');
     }

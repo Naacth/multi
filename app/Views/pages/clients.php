@@ -22,10 +22,14 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             <?php foreach($clients as $client): ?>
             <div class="bg-white rounded-xl p-8 shadow hover:shadow-lg transition-all duration-300 border border-industrial-100 flex flex-col items-center justify-center text-center group hover:-translate-y-1">
-                <div class="w-16 h-16 bg-industrial-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
-                    <span class="text-2xl font-bold text-industrial-400 group-hover:text-primary-600">
-                        <?= strtoupper(substr($client['name'], 0, 1)) ?>
-                    </span>
+                <div class="w-16 h-16 bg-industrial-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors overflow-hidden flex-shrink-0">
+                    <?php if (!empty($client['logo'])): ?>
+                        <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="<?= esc($client['name']) ?>" class="w-full h-full object-contain p-1">
+                    <?php else: ?>
+                        <span class="text-2xl font-bold text-industrial-400 group-hover:text-primary-600">
+                            <?= strtoupper(substr($client['name'], 0, 1)) ?>
+                        </span>
+                    <?php endif; ?>
                 </div>
                 <h3 class="font-bold text-industrial-900 mb-2"><?= esc($client['name']) ?></h3>
                 <?php if(!empty($client['description'])): ?>

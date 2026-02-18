@@ -8,7 +8,7 @@
 </div>
 
 <div class="bg-white rounded-xl shadow-sm border border-industrial-100 p-6 max-w-2xl">
-    <form action="/admin/clients" method="post">
+    <form action="/admin/clients" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
         
         <div class="mb-4">
@@ -16,9 +16,15 @@
             <input type="text" name="name" id="name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" required placeholder="Contoh: PT. Sumber Makmur">
         </div>
 
-        <div class="mb-6">
+        <div class="mb-4">
             <label for="description" class="block text-sm font-medium text-industrial-700 mb-1">Deskripsi / Industri</label>
             <input type="text" name="description" id="description" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" placeholder="Contoh: Industri Tekstil">
+        </div>
+
+        <div class="mb-6">
+            <label for="logo" class="block text-sm font-medium text-industrial-700 mb-1">Logo Klien (opsional)</label>
+            <input type="file" name="logo" id="logo" accept="image/jpeg,image/png,image/gif,image/webp" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border">
+            <p class="mt-1 text-xs text-industrial-500">JPG, PNG, GIF atau WebP. Maks. 2 MB. Jika tidak diisi, akan tampil inisial nama.</p>
         </div>
 
         <div>

@@ -8,7 +8,7 @@
 </div>
 
 <div class="bg-white rounded-xl shadow-sm border border-industrial-100 p-6 max-w-2xl">
-    <form action="/admin/clients/<?= $client['id'] ?>" method="post">
+    <form action="/admin/clients/<?= $client['id'] ?>" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
         
         <div class="mb-4">
@@ -16,9 +16,21 @@
             <input type="text" name="name" id="name" value="<?= esc($client['name']) ?>" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border" required>
         </div>
 
-        <div class="mb-6">
+        <div class="mb-4">
             <label for="description" class="block text-sm font-medium text-industrial-700 mb-1">Deskripsi / Industri</label>
             <input type="text" name="description" id="description" value="<?= esc($client['description']) ?>" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border">
+        </div>
+
+        <div class="mb-6">
+            <label for="logo" class="block text-sm font-medium text-industrial-700 mb-1">Logo Klien (opsional)</label>
+            <?php if (!empty($client['logo'])): ?>
+                <div class="flex items-center gap-4 mb-2">
+                    <img src="/uploads/clients/<?= esc($client['logo']) ?>" alt="Logo saat ini" class="w-16 h-16 object-contain border border-industrial-200 rounded-lg bg-industrial-50">
+                    <span class="text-sm text-industrial-600">Logo saat ini. Upload file baru untuk mengganti.</span>
+                </div>
+            <?php endif; ?>
+            <input type="file" name="logo" id="logo" accept="image/jpeg,image/png,image/gif,image/webp" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-industrial-300 rounded-md p-2 border">
+            <p class="mt-1 text-xs text-industrial-500">JPG, PNG, GIF atau WebP. Maks. 2 MB. Kosongkan untuk tetap pakai logo saat ini.</p>
         </div>
 
         <div>
